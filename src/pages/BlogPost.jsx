@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Calendar, User, Clock, ArrowLeft, Share2, Facebook, Twitter, Linkedin, Copy } from 'lucide-react';
+import { Calendar, User, Clock, ArrowLeft, ArrowRight, Share2, Copy } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
 import { blogPosts } from '../data/blogPosts';
 
