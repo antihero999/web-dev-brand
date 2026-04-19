@@ -5,13 +5,30 @@
 @tailwind utilities;
 
 @layer base {
+  * {
+    box-sizing: border-box;
+  }
+
   html, body {
     @apply bg-primary text-textMain font-jakarta antialiased;
     scroll-behavior: smooth;
+    overflow-x: hidden;
+    max-width: 100%;
   }
   
+  img, video, canvas, svg {
+    max-width: 100%;
+    height: auto;
+  }
+
   h1, h2, h3, h4, h5, h6 {
     @apply font-syne font-extrabold text-navy;
+  }
+
+  h1, h2 {
+    word-break: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
   }
   
   code, pre {

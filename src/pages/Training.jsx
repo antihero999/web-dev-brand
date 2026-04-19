@@ -204,7 +204,7 @@ function CourseCard({ course, index }) {
           {course.duration}
         </span>
 
-        <h3 className="text-xl font-syne font-bold text-navy mb-2 leading-snug">{course.title}</h3>
+        <h3 className="font-syne font-bold text-navy mb-2 leading-snug" style={{ fontSize: 'clamp(16px, 2.5vw, 22px)' }}>{course.title}</h3>
 
         {/* Price */}
         <div className="text-3xl font-syne font-extrabold mb-4" style={{ color: '#e85d26' }}>
@@ -256,7 +256,7 @@ function BundleCard({ bundle, index }) {
       </div>
 
       <div className="p-8 flex flex-col flex-grow">
-        <h3 className="text-xl font-syne font-bold text-navy mb-3 pr-24 leading-snug">{bundle.title}</h3>
+        <h3 className="font-syne font-bold text-navy mb-3 pr-24 leading-snug" style={{ fontSize: 'clamp(16px, 2.5vw, 22px)' }}>{bundle.title}</h3>
 
         {/* Price + value statement */}
         <div className="mb-3">
@@ -322,7 +322,7 @@ function CertificateSection() {
   return (
     <section
       ref={sectionRef}
-      style={{ background: '#f0ede8', padding: '80px 24px' }}
+      style={{ background: '#f0ede8', padding: 'clamp(40px, 10vw, 80px) 16px' }}
     >
       <div style={{ maxWidth: 800, margin: '0 auto', textAlign: 'center' }}>
         {/* Heading */}
@@ -334,7 +334,7 @@ function CertificateSection() {
         </motion.p>
         <motion.h2
           initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}
-          style={{ fontFamily: "'Syne', sans-serif", fontWeight: 800, fontSize: 'clamp(26px, 4vw, 40px)', color: '#1a1a2e', marginBottom: 12 }}
+          style={{ fontFamily: "'Syne', sans-serif", fontWeight: 800, fontSize: 'clamp(24px, 4vw, 48px)', color: '#1a1a2e', marginBottom: 12 }}
         >
           Your Certificate Awaits
         </motion.h2>
@@ -388,7 +388,7 @@ function CertificateSection() {
             <div style={{ height: 1, background: 'rgba(232,93,38,0.2)', marginBottom: 20 }} />
 
             {/* Main title */}
-            <h3 style={{ fontFamily: "'Syne', sans-serif", fontWeight: 800, fontSize: 'clamp(18px, 3vw, 28px)', color: '#1a1a2e', marginBottom: 16, lineHeight: 1.2 }}>
+            <h3 style={{ fontFamily: "'Syne', sans-serif", fontWeight: 800, fontSize: 'clamp(18px, 2.5vw, 28px)', color: '#1a1a2e', marginBottom: 16, lineHeight: 1.2 }}>
               Certificate of Completion
             </h3>
 
@@ -465,7 +465,7 @@ const Training = () => {
       <div className="absolute top-[20%] left-[-10%] w-[500px] h-[500px] bg-green/5 rounded-full blur-[100px] pointer-events-none blob" />
       <div className="absolute top-[60%] right-[-5%] w-[400px] h-[400px] bg-orange/5 rounded-full blur-[100px] pointer-events-none blob" style={{ animationDelay: '2s' }} />
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 md:px-12 lg:px-20 relative z-10">
 
         {/* ─── Page Header ─── */}
         <motion.div
@@ -477,7 +477,7 @@ const Training = () => {
           <div className="inline-block px-4 py-2 bg-orange/10 text-orange font-bold font-syne rounded-full text-sm mb-6 uppercase tracking-wider">
             Web Development Training
           </div>
-          <h1 className="text-5xl md:text-7xl font-syne font-extrabold text-navy mb-6 tracking-tight">Learn to Build <br className="hidden md:block"/> the Web.</h1>
+          <h1 className="font-syne font-extrabold text-navy mb-6 tracking-tight" style={{ fontSize: 'clamp(24px, 4vw, 48px)' }}>Learn to Build <br className="hidden md:block"/> the Web.</h1>
           <p className="text-xl font-jakarta text-navy/70 max-w-2xl mx-auto">
             Master the modern web with hands-on, practical training led by our expert team. From absolute beginner to full-stack engineer — we'll help you launch your developer career.
           </p>
@@ -496,7 +496,7 @@ const Training = () => {
               className="mb-10"
             >
               <p className="font-mono text-orange text-xs uppercase tracking-widest mb-1">{`0${catIndex + 1}`}</p>
-              <h2 className="text-3xl md:text-4xl font-syne font-extrabold text-navy mb-2">{category.label}</h2>
+              <h2 className="font-syne font-extrabold text-navy mb-2" style={{ fontSize: 'clamp(20px, 3vw, 28px)' }}>{category.label}</h2>
               <p className="font-jakarta text-navy/60">{category.subtext}</p>
             </motion.div>
 
@@ -520,10 +520,10 @@ const Training = () => {
       <CertificateSection />
 
       {/* ─── CTA Band ─── */}
-      <section className="py-20 px-6 bg-orange text-center relative overflow-hidden mt-24">
+      <section className="py-20 px-4 sm:px-8 md:px-12 lg:px-20 bg-orange text-center relative overflow-hidden mt-24">
         <div className="max-w-4xl mx-auto relative z-10 flex flex-col md:flex-row items-center justify-between">
           <div className="text-left mb-8 md:mb-0">
-            <h2 className="text-3xl md:text-4xl font-syne font-extrabold text-white mb-2">Not sure where to start?</h2>
+            <h2 className="font-syne font-extrabold text-white mb-2" style={{ fontSize: 'clamp(24px, 4vw, 48px)' }}>Not sure where to start?</h2>
             <p className="text-white/90 font-jakarta">Let's discuss your current skill level and goals.</p>
           </div>
           <Link to="/contact" className="inline-flex items-center justify-center px-8 py-4 font-bold text-orange bg-white rounded-full hover:bg-navy hover:text-white transition-all shadow-lg hover:-translate-y-1">

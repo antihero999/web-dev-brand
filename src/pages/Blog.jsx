@@ -27,7 +27,7 @@ const Blog = () => {
       <div className="absolute top-[5%] left-[-10%] w-[500px] h-[500px] bg-orange/5 rounded-full blur-[100px] pointer-events-none" />
       <div className="absolute bottom-[20%] right-[-10%] w-[400px] h-[400px] bg-green/5 rounded-full blur-[100px] pointer-events-none" style={{ animationDelay: '2s' }} />
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 md:px-12 lg:px-20 relative z-10">
         
         {/* Hero Section */}
         <motion.div 
@@ -40,7 +40,7 @@ const Blog = () => {
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-white/40 rounded-full blur-[80px]" />
           
           <div className="relative z-10">
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-syne font-extrabold text-navy tracking-tight mb-6">
+            <h1 className="font-syne font-extrabold text-navy tracking-tight mb-6" style={{ fontSize: 'clamp(24px, 4vw, 48px)' }}>
               Insights & Ideas.
             </h1>
             <p className="text-lg md:text-xl font-jakarta text-navy/70 max-w-2xl mx-auto leading-relaxed">
@@ -75,7 +75,7 @@ const Blog = () => {
                   </span>
                 </div>
                 
-                <h3 className="text-2xl font-syne font-bold text-navy mb-4 leading-tight group-hover:text-orange transition-colors">
+                <h3 className="font-syne font-bold text-navy mb-4 leading-tight group-hover:text-orange transition-colors" style={{ fontSize: 'clamp(16px, 2vw, 22px)' }}>
                   {post.title}
                 </h3>
                 

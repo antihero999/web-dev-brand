@@ -41,7 +41,7 @@ const About = () => {
       <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-orange/5 rounded-full blur-[100px] pointer-events-none blob" />
       <div className="absolute top-[50%] left-[-10%] w-[350px] h-[350px] bg-violet/5 rounded-full blur-[100px] pointer-events-none blob" style={{ animationDelay: '3s' }} />
 
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 md:px-12 lg:px-20">
 
         {/* ─── Hero split section ─── */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-32">
@@ -107,7 +107,7 @@ const About = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <p className="font-mono text-orange text-xs uppercase tracking-widest mb-4">About Us</p>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-syne font-extrabold text-navy leading-[1.1] mb-8">
+            <h1 className="font-syne font-extrabold text-navy leading-[1.1] mb-8" style={{ fontSize: 'clamp(22px, 3.5vw, 48px)' }}>
               The Innovation Studio Behind Your Digital Growth.
             </h1>
 
@@ -154,7 +154,7 @@ const About = () => {
         >
           <div className="text-center mb-16">
             <p className="font-mono text-orange text-sm uppercase tracking-widest mb-4">How We Work</p>
-            <h2 className="text-4xl md:text-5xl font-syne font-extrabold text-navy">Our Process.</h2>
+            <h2 className="font-syne font-extrabold text-navy" style={{ fontSize: 'clamp(24px, 4vw, 48px)' }}>Our Process.</h2>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -177,7 +177,7 @@ const About = () => {
                     {item.icon}
                   </div>
                   <div className="font-mono text-orange/50 text-xs mb-2">{item.step}</div>
-                  <h3 className="text-xl font-syne font-bold text-navy mb-3">{item.title}</h3>
+                  <h3 className="font-syne font-bold text-navy mb-3" style={{ fontSize: 'clamp(18px, 3vw, 24px)' }}>{item.title}</h3>
                   <p className="font-jakarta text-navy/60 text-sm leading-relaxed">{item.desc}</p>
                 </div>
               </motion.div>
@@ -195,7 +195,7 @@ const About = () => {
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-[600px] bg-gradient-to-r from-orange/10 via-transparent to-violet/10 rotate-45 pointer-events-none" />
 
           <div className="text-center mb-16 relative z-10">
-            <h2 className="text-4xl md:text-5xl font-syne font-extrabold text-white mb-4">Why Rexforge?</h2>
+            <h2 className="font-syne font-extrabold text-white mb-4" style={{ fontSize: 'clamp(24px, 4vw, 48px)' }}>Why Rexforge?</h2>
             <p className="font-jakarta text-white/60">The principles that drive our engineering.</p>
           </div>
 
@@ -210,7 +210,7 @@ const About = () => {
                 className="bg-white/5 border border-white/10 p-8 rounded-3xl backdrop-blur-md hover:bg-white/10 transition-colors duration-300 group"
               >
                 <div className="text-5xl font-syne font-extrabold text-white/10 group-hover:text-orange/40 transition-colors mb-4">{prop.num}</div>
-                <h3 className="text-2xl font-syne font-bold text-white mb-3">{prop.title}</h3>
+                <h3 className="font-syne font-bold text-white mb-3" style={{ fontSize: 'clamp(20px, 3.5vw, 28px)' }}>{prop.title}</h3>
                 <p className="font-jakarta text-white/70 leading-relaxed text-sm md:text-base">{prop.desc}</p>
               </motion.div>
             ))}

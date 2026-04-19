@@ -66,7 +66,7 @@ const Contact = () => {
       <div className="absolute top-[10%] right-[-10%] w-[500px] h-[500px] bg-orange/5 rounded-full blur-[100px] pointer-events-none blob" />
       <div className="absolute bottom-[-10%] left-[-10%] w-[400px] h-[400px] bg-violet/5 rounded-full blur-[100px] pointer-events-none blob" style={{ animationDelay: '2s' }} />
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 md:px-12 lg:px-20 relative z-10">
         
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
@@ -74,7 +74,7 @@ const Contact = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h1 className="text-5xl md:text-7xl font-syne font-extrabold text-navy mb-6 tracking-tight">Let's Build <br className="hidden md:block"/> Something Great.</h1>
+          <h1 className="font-syne font-extrabold text-navy mb-6 tracking-tight" style={{ fontSize: 'clamp(24px, 4vw, 52px)' }}>Let's Build <br className="hidden md:block"/> Something Great.</h1>
           <p className="text-xl font-jakarta text-navy/70 max-w-2xl mx-auto">
             Ready to bring your vision to life? Choose a package, enroll in a course, or just say hello.
           </p>
@@ -87,7 +87,7 @@ const Contact = () => {
             <div className="absolute bottom-0 right-0 w-full h-full bg-gradient-to-tr from-orange/20 to-transparent pointer-events-none" />
             
             <div className="relative z-10 mb-12">
-              <h3 className="text-3xl font-syne font-bold mb-8">Get in Touch</h3>
+              <h3 className="font-syne font-bold mb-8" style={{ fontSize: 'clamp(24px, 3.5vw, 32px)' }}>Get in Touch</h3>
               
               <div className="space-y-8 font-jakarta">
                 <a href="https://wa.me/2347065356471" target="_blank" rel="noreferrer" className="flex items-center group">

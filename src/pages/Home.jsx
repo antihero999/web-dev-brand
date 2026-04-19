@@ -104,7 +104,7 @@ const Home = () => {
       <div className="absolute top-[60%] left-[20%] w-[60vw] h-[60vw] bg-green/5 rounded-full blur-[120px] pointer-events-none blob" style={{ animationDelay: '4s' }} />
 
       {/* ─── Hero Section ─── */}
-      <section className="relative px-6 min-h-screen flex flex-col justify-center overflow-hidden pt-[80px] pb-[40px]">
+      <section className="relative px-4 sm:px-8 md:px-12 lg:px-20 min-h-screen flex flex-col justify-center overflow-hidden pt-[80px] pb-[40px]">
         <div className="max-w-7xl mx-auto w-full">
           <div className="flex flex-col lg:flex-row gap-8 items-center w-full">
             {/* Constellation — TOP on mobile, RIGHT on desktop */}
@@ -130,7 +130,7 @@ const Home = () => {
                 Available Worldwide
               </motion.div>
 
-              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-syne font-extrabold text-navy leading-[1.1] tracking-tight">
+              <h1 className="font-syne font-extrabold text-navy leading-[1.1] tracking-tight" style={{ fontSize: 'clamp(28px, 5vw, 64px)' }}>
                 We Build Digital Products{' '}
                 <span className="text-orange">That</span>{' '}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange to-violet">
@@ -181,7 +181,7 @@ const Home = () => {
       <InfiniteMarquee />
 
       {/* ─── Stats Section ─── */}
-      <section className="py-24 px-6 bg-secondary">
+      <section className="py-24 px-4 sm:px-8 md:px-12 lg:px-20 bg-secondary">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
             {[
@@ -198,7 +198,7 @@ const Home = () => {
                 transition={{ delay: i * 0.1, duration: 0.6 }}
                 className="border-l-2 border-orange/30 pl-6"
               >
-                <div className="text-4xl md:text-5xl font-syne font-bold text-navy mb-2">{stat.num}</div>
+                <div className="font-syne font-bold text-navy mb-2" style={{ fontSize: 'clamp(32px, 5vw, 60px)' }}>{stat.num}</div>
                 <div className="text-xs md:text-sm font-jakarta font-semibold text-navy/60 uppercase tracking-widest">{stat.label}</div>
               </motion.div>
             ))}
@@ -207,7 +207,7 @@ const Home = () => {
       </section>
 
       {/* ─── Services Preview Grid ─── */}
-      <section className="py-32 px-6">
+      <section className="py-32 px-4 sm:px-8 md:px-12 lg:px-20">
         <div className="max-w-7xl mx-auto">
           <div className="mb-16">
             <motion.p
@@ -223,7 +223,8 @@ const Home = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="text-4xl md:text-5xl font-syne font-extrabold text-navy mb-6"
+              className="font-syne font-extrabold text-navy mb-6"
+              style={{ fontSize: 'clamp(24px, 4vw, 48px)' }}
             >
               Our Expertise.
             </motion.h2>
@@ -282,7 +283,7 @@ const Home = () => {
       </section>
 
       {/* ─── Tools We Use ─── */}
-      <section className="py-24 px-6 relative z-10">
+      <section className="py-24 px-4 sm:px-8 md:px-12 lg:px-20 relative z-10">
         <div className="max-w-7xl mx-auto text-center">
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -297,7 +298,8 @@ const Home = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-4xl md:text-5xl font-syne font-extrabold text-navy mb-16"
+            className="font-syne font-extrabold text-navy mb-16"
+            style={{ fontSize: 'clamp(24px, 4vw, 48px)' }}
           >
             Tools We Use.
           </motion.h2>
@@ -332,7 +334,7 @@ const Home = () => {
       </section>
 
       {/* ─── How We Work ─── */}
-      <section className="py-32 px-6 relative overflow-hidden" style={{ background: '#f0ede8' }}>
+      <section className="py-32 px-4 sm:px-8 md:px-12 lg:px-20 relative overflow-hidden" style={{ background: '#f0ede8' }}>
         <div className="max-w-7xl mx-auto relative z-10">
 
           {/* Heading */}
@@ -350,7 +352,8 @@ const Home = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="text-4xl md:text-5xl font-syne font-extrabold text-navy mb-6"
+              className="font-syne font-extrabold text-navy mb-6"
+              style={{ fontSize: 'clamp(24px, 4vw, 48px)' }}
             >
               How We Work.
             </motion.h2>
@@ -461,7 +464,7 @@ const Home = () => {
       </section>
 
       {/* ─── What Our Clients Need to Know ─── */}
-      <section className="py-32 px-6 bg-[#f0ede8] relative overflow-hidden">
+      <section className="py-32 px-4 sm:px-8 md:px-12 lg:px-20 bg-[#f0ede8] relative overflow-hidden">
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-16">
             <motion.p
@@ -477,7 +480,8 @@ const Home = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="text-4xl md:text-5xl font-syne font-extrabold text-navy mb-6"
+              className="font-syne font-extrabold text-navy mb-6"
+              style={{ fontSize: 'clamp(24px, 4vw, 48px)' }}
             >
               What Our Clients Need to Know.
             </motion.h2>
@@ -512,7 +516,7 @@ const Home = () => {
       </section>
 
       {/* ─── Latest Insights ─── */}
-      <section className="py-32 px-6 bg-primary relative overflow-hidden">
+      <section className="py-32 px-4 sm:px-8 md:px-12 lg:px-20 bg-primary relative overflow-hidden">
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-16">
             <motion.p
@@ -528,7 +532,8 @@ const Home = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="text-4xl md:text-5xl font-syne font-extrabold text-navy mb-6"
+              className="font-syne font-extrabold text-navy mb-6"
+              style={{ fontSize: 'clamp(24px, 4vw, 48px)' }}
             >
               Latest Insights.
             </motion.h2>
@@ -567,7 +572,7 @@ const Home = () => {
                     </span>
                   </div>
                   
-                  <h3 className="text-2xl font-syne font-bold text-navy mb-4 leading-tight group-hover:text-orange transition-colors">
+                  <h3 className="font-syne font-bold text-navy mb-4 leading-tight group-hover:text-orange transition-colors" style={{ fontSize: 'clamp(16px, 2vw, 22px)' }}>
                     {post.title}
                   </h3>
                   
@@ -606,7 +611,7 @@ const Home = () => {
       </section>
 
       {/* ─── CTA Band ─── */}
-      <section className="py-24 px-6 bg-gradient-to-br from-navy via-navy to-[#2a2a4a] text-center relative overflow-hidden">
+      <section className="py-24 px-4 sm:px-8 md:px-12 lg:px-20 bg-gradient-to-br from-navy via-navy to-[#2a2a4a] text-center relative overflow-hidden">
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-orange/20 rounded-full blur-[120px] pointer-events-none" />
 
         <div className="max-w-4xl mx-auto relative z-10">
@@ -614,7 +619,8 @@ const Home = () => {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-6xl font-syne font-extrabold text-white mb-8"
+            className="font-syne font-extrabold text-white mb-8"
+            style={{ fontSize: 'clamp(24px, 4vw, 48px)' }}
           >
             Ready to innovate?
           </motion.h2>

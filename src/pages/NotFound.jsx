@@ -66,7 +66,7 @@ export default function NotFound() {
             style={{
               fontFamily: "'Syne', sans-serif",
               fontWeight: 800,
-              fontSize: 'clamp(80px, 15vw, 160px)',
+              fontSize: 'clamp(80px, 20vw, 160px)',
               color: 'rgba(232, 93, 38, 0.12)',
               lineHeight: 1,
               marginBottom: -20,
@@ -83,7 +83,7 @@ export default function NotFound() {
             style={{
               fontFamily: "'Syne', sans-serif",
               fontWeight: 800,
-              fontSize: 'clamp(28px, 4vw, 42px)',
+              fontSize: 'clamp(24px, 4vw, 42px)',
               color: '#1a1a2e',
               lineHeight: 1.2,
               marginBottom: 16,

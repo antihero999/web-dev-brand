@@ -21,14 +21,14 @@ const Services = () => {
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-orange/5 rounded-full blur-[100px] pointer-events-none blob" />
       <div className="absolute bottom-[-10%] left-[-10%] w-[600px] h-[600px] bg-violet/5 rounded-full blur-[120px] pointer-events-none blob" style={{ animationDelay: '3s' }} />
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 md:px-12 lg:px-20 relative z-10">
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           className="text-center mb-20"
         >
-          <h1 className="text-5xl md:text-7xl font-syne font-extrabold text-navy mb-6 tracking-tight">What We Offer.</h1>
+          <h1 className="font-syne font-extrabold text-navy mb-6 tracking-tight" style={{ fontSize: 'clamp(24px, 4vw, 48px)' }}>What We Offer.</h1>
           <p className="text-xl font-jakarta text-navy/70 max-w-2xl mx-auto">
             Strategic digital solutions designed to elevate your brand. Choose a package that fits your goals.
           </p>
@@ -44,8 +44,8 @@ const Services = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="bg-card p-10 rounded-3xl shadow-soft border border-borderLight flex flex-col h-full hover:shadow-xl hover:-translate-y-2 transition-all duration-300"
           >
-            <h3 className="text-2xl font-syne font-bold text-navy mb-2">Starter</h3>
-            <div className="text-orange text-4xl font-syne font-extrabold mb-6">₦80,000</div>
+            <h3 className="font-syne font-bold text-navy mb-2" style={{ fontSize: 'clamp(20px, 3vw, 28px)' }}>Starter</h3>
+            <div className="text-orange font-syne font-extrabold mb-6" style={{ fontSize: 'clamp(24px, 3.5vw, 36px)' }}>₦80,000</div>
             <p className="font-jakarta text-navy/60 mb-8 text-sm">Perfect for small businesses establishing their first digital footprint.</p>
             
             <ul className="space-y-4 font-jakarta text-navy/80 mb-10 flex-grow">
@@ -75,8 +75,8 @@ const Services = () => {
               </span>
             </div>
             
-            <h3 className="text-2xl font-syne font-bold text-white mb-2">Professional</h3>
-            <div className="text-white text-4xl font-syne font-extrabold mb-6">₦200,000</div>
+            <h3 className="font-syne font-bold text-white mb-2" style={{ fontSize: 'clamp(20px, 3vw, 28px)' }}>Professional</h3>
+            <div className="text-white font-syne font-extrabold mb-6" style={{ fontSize: 'clamp(24px, 3.5vw, 36px)' }}>₦200,000</div>
             <p className="font-jakarta text-white/70 mb-8 text-sm">Comprehensive digital presence for growing businesses and serious brands.</p>
             
             <ul className="space-y-4 font-jakarta text-white/90 mb-10 flex-grow">
@@ -100,8 +100,8 @@ const Services = () => {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="bg-card p-10 rounded-3xl shadow-soft border border-borderLight flex flex-col h-full hover:shadow-xl hover:-translate-y-2 transition-all duration-300"
           >
-            <h3 className="text-2xl font-syne font-bold text-navy mb-2">Enterprise</h3>
-            <div className="text-orange text-4xl font-syne font-extrabold mb-2">₦450,000<span className="text-2xl">+</span></div>
+            <h3 className="font-syne font-bold text-navy mb-2" style={{ fontSize: 'clamp(20px, 3vw, 28px)' }}>Enterprise</h3>
+            <div className="text-orange font-syne font-extrabold mb-2" style={{ fontSize: 'clamp(24px, 3.5vw, 36px)' }}>₦450,000<span className="text-2xl">+</span></div>
             <p className="font-jakarta text-navy/60 mb-8 text-sm">Complex logic, custom backend, and highly scalable solutions.</p>
             
             <ul className="space-y-4 font-jakarta text-navy/80 mb-10 flex-grow">
@@ -129,7 +129,7 @@ const Services = () => {
           className="border-t border-borderLight pt-20"
         >
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-syne font-extrabold text-navy mb-4">A La Carte Services.</h2>
+            <h2 className="font-syne font-extrabold text-navy mb-4" style={{ fontSize: 'clamp(24px, 4vw, 48px)' }}>A La Carte Services.</h2>
             <p className="font-jakarta text-navy/60">Targeted improvements for your existing website.</p>
           </div>
 

@@ -49,14 +49,14 @@ const Portfolio = () => {
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://rexforge.com/portfolio" />
       </Helmet>
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 md:px-12 lg:px-20">
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           className="text-center mb-20"
         >
-          <h1 className="text-5xl md:text-7xl font-syne font-extrabold text-navy mb-6 tracking-tight">Work We're <br className="hidden md:block"/> Proud Of.</h1>
+          <h1 className="font-syne font-extrabold text-navy mb-6 tracking-tight" style={{ fontSize: 'clamp(24px, 4vw, 48px)' }}>Work We're <br className="hidden md:block"/> Proud Of.</h1>
           <p className="text-xl font-jakarta text-navy/70 max-w-2xl mx-auto">
             A selection of recent projects built with precision, performance, and purpose.
           </p>
@@ -89,7 +89,7 @@ const Portfolio = () => {
               {/* Card Content underneath */}
               <div className="p-8 border-t border-borderLight relative z-20 bg-card">
                 <div className="flex flex-col md:flex-row md:items-center justify-between mb-4">
-                  <h4 className="text-2xl font-syne font-bold text-navy mb-2 md:mb-0 group-hover:text-orange transition-colors duration-300">
+                  <h4 className="font-syne font-bold text-navy mb-2 md:mb-0 group-hover:text-orange transition-colors duration-300" style={{ fontSize: 'clamp(16px, 2.5vw, 22px)' }}>
                     {project.title}
                   </h4>
                 </div>

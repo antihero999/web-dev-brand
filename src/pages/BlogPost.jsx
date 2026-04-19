@@ -42,7 +42,7 @@ const BlogPost = () => {
       <div className="absolute top-[5%] right-[-10%] w-[500px] h-[500px] bg-violet/5 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute top-[40%] left-[-10%] w-[400px] h-[400px] bg-orange/5 rounded-full blur-[100px] pointer-events-none" />
 
-      <div className="max-w-[760px] mx-auto px-6 relative z-10">
+      <div className="max-w-[760px] mx-auto px-4 sm:px-8 relative z-10">
         
         {/* Back Link */}
         <motion.div 
@@ -71,7 +71,7 @@ const BlogPost = () => {
               {post.category}
             </span>
             
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-syne font-extrabold text-navy tracking-tight leading-tight mb-8">
+            <h1 className="font-syne font-extrabold text-navy tracking-tight leading-tight mb-8" style={{ fontSize: 'clamp(24px, 4.5vw, 56px)' }}>
               {post.title}
             </h1>
             
@@ -93,7 +93,8 @@ const BlogPost = () => {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  className="text-2xl md:text-3xl font-syne font-bold text-navy pl-4 border-l-4 border-orange mt-12 mb-6"
+                  className="font-syne font-bold text-navy pl-4 border-l-4 border-orange mt-12 mb-6"
+                  style={{ fontSize: 'clamp(20px, 3.5vw, 32px)' }}
                 >
                   {block.text}
                 </motion.h2>
