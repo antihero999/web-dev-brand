@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#1a1a2e"/>
+  <defs>
+    <radialGradient id="glow" cx="1" cy="0" r="0.5">
+      <stop offset="0%" stop-color="#e85d26" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#e85d26" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  
+  <text x="80" y="320" font-family="Arial Black, Syne, sans-serif" font-size="84" font-weight="800" fill="white">Rexforge</text>
+  <text x="80" y="370" font-family="Arial, Plus Jakarta Sans, sans-serif" font-size="26" fill="rgba(255,255,255,0.6)">Innovating the Future, One Pixel at a Time.</text>
+  
+  <!-- Tags -->
+  <g transform="translate(1000, 200)">
+    <rect x="-150" y="0" width="150" height="40" rx="20" fill="rgba(232, 93, 38, 0.1)" stroke="rgba(232, 93, 38, 0.3)"/>
+    <text x="-75" y="25" font-family="Arial, sans-serif" font-size="18" fill="#e85d26" text-anchor="middle">React.js</text>
+  </g>
+  <g transform="translate(1000, 260)">
+    <rect x="-150" y="0" width="150" height="40" rx="20" fill="rgba(155, 93, 229, 0.1)" stroke="rgba(155, 93, 229, 0.3)"/>
+    <text x="-75" y="25" font-family="Arial, sans-serif" font-size="18" fill="#9b5de5" text-anchor="middle">Node.js</text>
+  </g>
+  
+  <text x="80" y="550" font-family="monospace" font-size="18" fill="#e85d26" font-weight="bold">rexforge.com</text>
+</svg>

@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html, body {
+    @apply bg-primary text-textMain font-jakarta antialiased;
+    scroll-behavior: smooth;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-syne font-extrabold text-navy;
+  }
+  
+  code, pre {
+    @apply font-mono;
+  }
+}
+
+/* Custom Scrollbar for Marquee / General */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #fafaf8;
+}
+::-webkit-scrollbar-thumb {
+  background: #f0ede8;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #e85d26;
+}
+
+/* Utilities for blobs */
+.blob {
+  position: absolute;
+  filter: blur(80px);
+  z-index: 0;
+  opacity: 0.6;
+  animation: float 10s ease-in-out infinite alternate;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px) scale(1);
+  }
+  100% {
+    transform: translateY(-20px) scale(1.05);
+  }
+}
