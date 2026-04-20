@@ -180,31 +180,6 @@ const Home = () => {
       {/* ─── Tech Marquee ─── */}
       <InfiniteMarquee />
 
-      {/* ─── Stats Section ─── */}
-      <section className="py-24 px-4 sm:px-8 md:px-12 lg:px-20 bg-secondary">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
-            {[
-              { num: "50+", label: "Projects Delivered" },
-              { num: "30+", label: "Happy Clients" },
-              { num: "3+", label: "Years Experience" },
-              { num: "24/7", label: "Client Support" },
-            ].map((stat, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1, duration: 0.6 }}
-                className="border-l-2 border-orange/30 pl-6"
-              >
-                <div className="font-syne font-bold text-navy mb-2" style={{ fontSize: 'clamp(32px, 5vw, 60px)' }}>{stat.num}</div>
-                <div className="text-xs md:text-sm font-jakarta font-semibold text-navy/60 uppercase tracking-widest">{stat.label}</div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* ─── Services Preview Grid ─── */}
       <section className="py-32 px-4 sm:px-8 md:px-12 lg:px-20">

@@ -5,7 +5,7 @@ export const blogPosts = [
     title: "Why Your Nigerian Business Needs a Professional Website in 2026",
     category: "Web Development",
     excerpt: "Most Nigerian businesses are losing customers to competitors with better websites. Here is what a professional online presence can do for your revenue and reputation.",
-    date: "June 3, 2026",
+    date: "March 4, 2026",
     author: "Rexforge Team",
     gradient: "from-orange/20 to-violet/10",
     content: [
@@ -41,7 +41,7 @@ export const blogPosts = [
     title: "React vs Plain HTML: Which Should You Learn First?",
     category: "Tutorial",
     excerpt: "If you are just starting out in web development, choosing where to begin can feel overwhelming. We break down the honest answer for complete beginners.",
-    date: "May 28, 2026",
+    date: "March 11, 2026",
     author: "Rexforge Team",
     gradient: "from-green/20 to-navy/10",
     content: [
@@ -77,7 +77,7 @@ export const blogPosts = [
     title: "5 Signs Your Business Website Needs a Redesign Right Now",
     category: "Design",
     excerpt: "A slow, outdated website is not just an eyesore — it is actively costing you clients. Here are five clear signs it is time for a fresh build.",
-    date: "May 20, 2026",
+    date: "March 19, 2026",
     author: "Rexforge Team",
     gradient: "from-violet/20 to-orange/10",
     content: [
@@ -113,7 +113,7 @@ export const blogPosts = [
     title: "How to Start Freelancing as a Web Developer in Nigeria",
     category: "Career",
     excerpt: "Freelancing is one of the fastest paths to financial independence for Nigerian developers. Here is a practical step-by-step guide to landing your first paid client.",
-    date: "May 12, 2026",
+    date: "March 26, 2026",
     author: "Rexforge Team",
     gradient: "from-navy/20 to-green/10",
     content: [
@@ -149,7 +149,7 @@ export const blogPosts = [
     title: "What is SEO and Why Should Nigerian Business Owners Care?",
     category: "Web Development",
     excerpt: "Search engine optimization is not just a buzzword — it is how customers find you on Google without you spending a naira on ads. Here is what you need to know.",
-    date: "May 5, 2026",
+    date: "April 7, 2026",
     author: "Rexforge Team",
     gradient: "from-orange/20 to-orange/30",
     content: [
@@ -185,7 +185,7 @@ export const blogPosts = [
     title: "From Zero to First Website: A Beginner's Honest Roadmap",
     category: "Tutorial",
     excerpt: "Learning web development can feel impossible when you do not know where to start. This is the honest, practical roadmap we wish someone had given us at the beginning.",
-    date: "April 28, 2026",
+    date: "April 14, 2026",
     author: "Rexforge Team",
     gradient: "from-green/20 to-violet/10",
     content: [
