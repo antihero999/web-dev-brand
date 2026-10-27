@@ -1,32 +1,2275 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="apple-touch-icon" href="/favicon.svg" />
-    <meta name="theme-color" content="#e85d26" />
-    
-    <!-- Preconnect & Font Preloading -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="manifest" href="/manifest.json" />
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Geoffrey — Creative Director & Founder, RexForge Studios</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&family=Poppins:wght@700;800;900&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-color: #000000;
+      --accent: #FF5A1F;
+      --accent-secondary: #FF3B00;
+      --accent-glow: rgba(255, 90, 31, 0.35);
+      --text-main: #FFFFFF;
+      --text-muted: rgba(255, 255, 255, 0.72);
+      --text-dim: rgba(255, 255, 255, 0.45);
+      --card-bg: transparent;
+      --card-border: rgba(255, 255, 255, 0.12);
+      --font-heading: 'Space Grotesk', -apple-system, sans-serif;
+      --font-poppins: 'Poppins', sans-serif;
+      --font-body: 'Plus Jakarta Sans', -apple-system, sans-serif;
+    }
 
-    <title>Rexforge — Premium Web Development & Training in Nigeria</title>
-    <meta name="description" content="Rexforge builds premium websites, web applications, and digital products for businesses across Nigeria and beyond. Based in Anambra State." />
-    <meta name="keywords" content="web developer Nigeria, website design Anambra, web development Nigeria, React developer Nigeria, Rexforge" />
-    <meta property="og:title" content="Rexforge — We Build Digital Products That Move People" />
-    <meta property="og:description" content="Premium websites, web apps, and digital solutions for Nigerian businesses. Based in Anambra State." />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://rexforge.com" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Rexforge — Premium Web Development Nigeria" />
-    <meta name="twitter:description" content="Premium websites and web apps for businesses across Nigeria." />
-    <meta name="author" content="Rexforge" />
-    <meta name="robots" content="index, follow" />
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      width: 100%;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      overflow-x: hidden;
+      line-height: 1.5;
+    }
+
+    /* Fixed Background Canvas for Fullscreen Responsive Animation */
+    .canvas-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      height: 100dvh;
+      overflow: hidden;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    canvas {
+      display: block;
+      width: 100vw;
+      height: 100vh;
+      height: 100dvh;
+    }
+
+    /* Cinematic Assembling Loader */
+    .loader {
+      position: fixed;
+      inset: 0;
+      background: #000000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.7s;
+      gap: 28px;
+    }
+
+    .loader.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .assemble-container {
+      position: relative;
+      width: 140px;
+      height: 150px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .assemble-aura {
+      position: absolute;
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 90, 31, 0.35) 0%, rgba(255, 59, 0, 0) 70%);
+      animation: auraPulse 2.4s ease-in-out infinite alternate;
+      pointer-events: none;
+    }
+
+    .assemble-orbit-ring {
+      position: absolute;
+      width: 136px;
+      height: 136px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-top-color: var(--accent);
+      border-bottom-color: var(--accent);
+      animation: spinOrbit 3.5s linear infinite;
+    }
+
+    .assemble-dashed-ring {
+      position: absolute;
+      width: 114px;
+      height: 114px;
+      border-radius: 50%;
+      border: 1.5px dashed rgba(255, 90, 31, 0.4);
+      animation: spinOrbitRev 6s linear infinite;
+    }
+
+    /* 4 Corner Tech Converging Brackets */
+    .corner-bracket {
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      border: 2px solid var(--accent);
+      opacity: 0.8;
+      transition: transform 0.6s ease;
+    }
+
+    .br-tl { top: 0; left: 0; border-right: none; border-bottom: none; animation: bracketTL 2s ease-in-out infinite alternate; }
+    .br-tr { top: 0; right: 0; border-left: none; border-bottom: none; animation: bracketTR 2s ease-in-out infinite alternate; }
+    .br-bl { bottom: 0; left: 0; border-right: none; border-top: none; animation: bracketBL 2s ease-in-out infinite alternate; }
+    .br-br { bottom: 0; right: 0; border-left: none; border-top: none; animation: bracketBR 2s ease-in-out infinite alternate; }
+
+    @keyframes bracketTL { 0% { transform: translate(-4px, -4px); } 100% { transform: translate(2px, 2px); } }
+    @keyframes bracketTR { 0% { transform: translate(4px, -4px); } 100% { transform: translate(-2px, 2px); } }
+    @keyframes bracketBL { 0% { transform: translate(-4px, 4px); } 100% { transform: translate(2px, -2px); } }
+    @keyframes bracketBR { 0% { transform: translate(4px, 4px); } 100% { transform: translate(-2px, -2px); } }
+
+    /* Assembling SVG Pieces */
+    .assemble-svg {
+      width: 86px;
+      height: 100px;
+      z-index: 2;
+      filter: drop-shadow(0 0 16px var(--accent-glow));
+    }
+
+    .piece {
+      transform-origin: center;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .piece-tl { animation: assembleTL 2.2s cubic-bezier(0.16, 1, 0.3, 1) infinite alternate; }
+    .piece-tr { animation: assembleTR 2.2s cubic-bezier(0.16, 1, 0.3, 1) infinite alternate; }
+    .piece-bl { animation: assembleBL 2.2s cubic-bezier(0.16, 1, 0.3, 1) infinite alternate; }
+    .piece-br { animation: assembleBR 2.2s cubic-bezier(0.16, 1, 0.3, 1) infinite alternate; }
+    .piece-center { animation: assembleCenter 2.2s cubic-bezier(0.16, 1, 0.3, 1) infinite alternate; }
+    .piece-core { animation: assembleCore 1.6s ease-in-out infinite alternate; }
+
+    @keyframes assembleTL { 0% { transform: translate(-14px, -14px) rotate(-10deg); opacity: 0.4; } 100% { transform: translate(0, 0) rotate(0deg); opacity: 1; } }
+    @keyframes assembleTR { 0% { transform: translate(14px, -14px) rotate(10deg); opacity: 0.4; } 100% { transform: translate(0, 0) rotate(0deg); opacity: 1; } }
+    @keyframes assembleBL { 0% { transform: translate(-12px, 14px); opacity: 0.4; } 100% { transform: translate(0, 0); opacity: 1; } }
+    @keyframes assembleBR { 0% { transform: translate(12px, 14px); opacity: 0.4; } 100% { transform: translate(0, 0); opacity: 1; } }
+    @keyframes assembleCenter { 0% { transform: scaleY(0.6) translateY(-8px); opacity: 0.5; } 100% { transform: scaleY(1) translateY(0); opacity: 1; } }
+    @keyframes assembleCore { 0% { transform: scale(0.7); filter: drop-shadow(0 0 2px #fff); } 100% { transform: scale(1.2); filter: drop-shadow(0 0 12px var(--accent)); } }
+
+    @keyframes auraPulse { 0% { transform: scale(0.85); opacity: 0.4; } 100% { transform: scale(1.2); opacity: 0.8; } }
+    @keyframes spinOrbit { 100% { transform: rotate(360deg); } }
+    @keyframes spinOrbitRev { 100% { transform: rotate(-360deg); } }
+
+    /* Laser Scan Line */
+    .assemble-laser-scan {
+      position: absolute;
+      top: 0;
+      left: 10%;
+      width: 80%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #ffffff, var(--accent), transparent);
+      box-shadow: 0 0 8px #ffffff;
+      animation: laserSweep 2s ease-in-out infinite;
+      z-index: 3;
+      pointer-events: none;
+    }
+
+    @keyframes laserSweep { 0% { top: 15%; opacity: 0; } 30% { opacity: 1; } 70% { opacity: 1; } 100% { top: 85%; opacity: 0; } }
+
+    /* Loader HUD Wrap */
+    .loader-hud-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .loader-status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .status-pulse-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 6px var(--accent-glow);
+      animation: auraPulse 1s ease-in-out infinite alternate;
+    }
+
+    .loader-bar-bg {
+      width: 220px;
+      height: 3px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 6px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .loader-bar {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, #FF5A1F, #ffffff);
+      box-shadow: 0 0 12px var(--accent-glow);
+      transition: width 0.1s ease-out;
+    }
+
+    .loader-text {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      font-family: var(--font-heading);
+      font-weight: 600;
+    }
+
+    /* Main Foreground Content Layer - Sitting directly on background */
+    .content-wrapper {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+    }
+
+    /* Navigation Bar */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      padding: 16px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background 0.3s, padding 0.3s;
+    }
+
+    header.scrolled {
+      background: rgba(0, 0, 0, 0.7);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 12px 28px;
+    }
+
+    .brand-logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .brand-crest-icon {
+      width: 26px;
+      height: 30px;
+      filter: drop-shadow(0 2px 6px rgba(0,0,0,0.8));
+      transition: transform 0.3s ease;
+    }
+
+    .brand-logo-wrap:hover .brand-crest-icon {
+      transform: scale(1.08);
+    }
+
+    .logo-text-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .logo-name {
+      font-family: var(--font-heading);
+      font-size: 17px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #fff;
+      line-height: 1.1;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+    }
+
+    .logo-name span {
+      color: var(--accent);
+    }
+
+    .logo-tagline {
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      color: var(--text-dim);
+      text-transform: uppercase;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.25s ease;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+    }
+
+    nav a:hover {
+      color: #fff;
+    }
+
+    .btn-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #ffffff;
+      color: #000000;
+      padding: 8px 10px 8px 18px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-pill:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(255, 255, 255, 0.25);
+    }
+
+    .btn-pill-icon {
+      width: 26px;
+      height: 26px;
+      background: var(--accent);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 700;
+      transition: transform 0.25s ease;
+    }
+
+    .btn-pill:hover .btn-pill-icon {
+      transform: translateX(2px) rotate(-45deg);
+    }
+
+    .btn-accent {
+      background: var(--accent);
+      color: #ffffff;
+    }
+
+    .btn-accent:hover {
+      box-shadow: 0 8px 25px var(--accent-glow);
+    }
+
+    .btn-accent .btn-pill-icon {
+      background: #ffffff;
+      color: #000000;
+    }
+
+    .btn-dark-icon {
+      background: #111113;
+      color: #ffffff;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Hero Section */
+    .hero-section {
+      min-height: 95vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding-top: 130px;
+      padding-bottom: 50px;
+    }
+
+    .hero-top-content {
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 40px;
+      align-items: flex-end;
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .hero-name-title {
+      font-family: var(--font-poppins);
+      font-size: clamp(68px, 12vw, 136px);
+      font-weight: 900;
+      line-height: 0.88;
+      letter-spacing: -0.04em;
+      background: linear-gradient(135deg, #ffffff 60%, rgba(255, 255, 255, 0.75) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 4px 30px rgba(0, 0, 0, 0.8);
+      margin: 0;
+    }
+
+    .hero-fancy-subtitle {
+      margin-top: 6px;
+      display: block;
+    }
+
+    .hero-fancy-subtitle em {
+      font-family: var(--font-body);
+      font-style: italic;
+      font-weight: 500;
+      font-size: clamp(16px, 2.2vw, 22px);
+      letter-spacing: 0.02em;
+      color: rgba(255, 255, 255, 0.88);
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+      display: inline-block;
+    }
+
+    .hero-subtitle {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text-muted);
+      letter-spacing: -0.01em;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+    }
+
+    .hero-title {
+      font-family: var(--font-heading);
+      font-size: clamp(52px, 7.5vw, 90px);
+      font-weight: 700;
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.8);
+    }
+
+    .hero-title .highlight {
+      background: linear-gradient(135deg, #ffffff 40%, rgba(255, 255, 255, 0.7) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: block;
+    }
+
+    .hero-right {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      padding-bottom: 16px;
+    }
+
+    .hero-quote {
+      font-family: var(--font-heading);
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 1.3;
+      color: #ffffff;
+      letter-spacing: -0.02em;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+    }
+
+    .hero-desc {
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      max-width: 420px;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+    }
+
+    /* Pillars */
+    .hero-pillars {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-top: 60px;
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+      padding-top: 28px;
+    }
+
+    .pillar-item {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+    }
+
+    .pillar-num {
+      font-family: var(--font-heading);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+    }
+
+    .pillar-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    /* Brands / Partners Strip */
+    .brands-section {
+      padding: 40px 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      background: transparent;
+    }
+
+    .brands-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+
+    .brands-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-dim);
+      max-width: 140px;
+      line-height: 1.3;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+    }
+
+    .brands-list {
+      display: flex;
+      align-items: center;
+      gap: 42px;
+      flex-wrap: wrap;
+    }
+
+    .brand-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-heading);
+      font-size: 16px;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.9);
+      letter-spacing: -0.01em;
+      transition: color 0.2s, transform 0.2s;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+    }
+
+    .brand-item:hover {
+      color: #fff;
+      transform: translateY(-2px);
+    }
+
+    .brand-crest-small {
+      width: 20px;
+      height: 24px;
+    }
+
+    .brand-icon {
+      font-size: 18px;
+      color: var(--accent);
+    }
+
+    /* Behind The Designs / Craft Section */
+    .details-section {
+      padding: 90px 0 70px 0;
+    }
+
+    .section-header {
+      margin-bottom: 50px;
+    }
+
+    .section-tag {
+      color: var(--accent);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: capitalize;
+      margin-bottom: 14px;
+      display: block;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+    }
+
+    .section-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 50px;
+      align-items: flex-start;
+    }
+
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: clamp(36px, 4.2vw, 54px);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.8);
+    }
+
+    .section-right {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .section-desc {
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 1.55;
+      color: rgba(255, 255, 255, 0.95);
+      letter-spacing: -0.01em;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+    }
+
+    .section-cta-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding-top: 6px;
+      flex-wrap: wrap;
+    }
+
+    .cta-subtext {
+      font-size: 13px;
+      color: var(--text-dim);
+      font-weight: 500;
+      line-height: 1.3;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+    }
+
+    /* 3 Portfolio Showcase Cards */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 50px;
+    }
+
+    .work-card {
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s, box-shadow 0.4s;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      background: transparent;
+    }
+
+    .work-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(255, 255, 255, 0.35);
+      box-shadow: 0 18px 38px rgba(0, 0, 0, 0.7);
+    }
+
+    .card-visual {
+      height: 280px;
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+    }
+
+    .card-visual-inner {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .work-card:hover .card-visual-inner {
+      transform: scale(1.04);
+    }
+
+    .mock-art-rexforge {
+      width: 80%;
+      height: 82%;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 90, 31, 0.35);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      background: transparent;
+    }
+
+    .rexforge-card-logo {
+      width: 75px;
+      height: 90px;
+      filter: drop-shadow(0 4px 15px rgba(255, 90, 31, 0.4));
+      margin-bottom: 10px;
+      transition: transform 0.4s ease;
+    }
+
+    .work-card:hover .rexforge-card-logo {
+      transform: scale(1.08);
+    }
+
+    .rexforge-motto {
+      font-family: var(--font-heading);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.28em;
+      color: var(--accent);
+      text-transform: uppercase;
+    }
+
+    .mock-art-2 {
+      width: 80%;
+      height: 82%;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 90, 31, 0.35);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      background: transparent;
+    }
+
+    .pulse-card-logo {
+      width: 80px;
+      height: 80px;
+      filter: drop-shadow(0 4px 15px rgba(255, 90, 31, 0.4));
+      margin-bottom: 12px;
+      transition: transform 0.4s ease;
+    }
+
+    .work-card:hover .pulse-card-logo {
+      transform: scale(1.08);
+    }
+
+    .mock-art-3 {
+      width: 80%;
+      height: 82%;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      background: transparent;
+    }
+
+    .aura-card-logo {
+      width: 80px;
+      height: 80px;
+      filter: drop-shadow(0 4px 15px rgba(255, 255, 255, 0.3));
+      margin-bottom: 12px;
+      transition: transform 0.4s ease;
+    }
+
+    .work-card:hover .aura-card-logo {
+      transform: scale(1.08);
+    }
+
+    .mock-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .card-info {
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .card-category {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+    }
+
+    .card-name {
+      font-family: var(--font-heading);
+      font-size: 19px;
+      font-weight: 700;
+      color: #fff;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+    }
+
+    .card-subtext {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.45;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+    }
+
+    /* [04] DIGITAL CAMPAIGNS & REXFORGE STUDIOS METRICS */
+    .campaigns-section {
+      padding: 90px 0 50px 0;
+      position: relative;
+    }
+
+    .marker-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      margin-bottom: 60px;
+    }
+
+    .marker-left {
+      font-family: var(--font-heading);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+    }
+
+    .marker-center {
+      font-family: var(--font-heading);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #ffffff;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+    }
+
+    .marker-btn {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 13px;
+      cursor: pointer;
+      transition: background 0.25s, transform 0.25s;
+    }
+
+    .marker-btn:hover {
+      background: var(--accent);
+      color: #fff;
+      transform: scale(1.05);
+    }
+
+    .statement-grid {
+      display: grid;
+      grid-template-columns: 200px 1fr 140px;
+      gap: 30px;
+      align-items: flex-start;
+      margin-bottom: 60px;
+    }
+
+    .studio-brand-box {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .studio-crest-medium {
+      width: 38px;
+      height: 44px;
+      filter: drop-shadow(0 2px 10px rgba(255, 90, 31, 0.4));
+    }
+
+    .studio-brand-tag {
+      font-family: var(--font-heading);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #fff;
+      line-height: 1.2;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+    }
+
+    .statement-center {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .statement-title {
+      font-family: var(--font-heading);
+      font-size: clamp(32px, 4.2vw, 52px);
+      font-weight: 700;
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.8);
+    }
+
+    .statement-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      max-width: 560px;
+      line-height: 1.6;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+    }
+
+    .statement-right-tag {
+      text-align: right;
+      font-size: 12px;
+      color: var(--accent);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+    }
+
+    /* Metrics / Stat Cards Row */
+    .metrics-row {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 36px;
+      align-items: center;
+      margin-bottom: 90px;
+    }
+
+    .metrics-controls {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .metrics-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-dim);
+      letter-spacing: 0.02em;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+    }
+
+    .metrics-arrows {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .ctrl-arrow {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      cursor: pointer;
+      transition: transform 0.25s, background 0.25s;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: transparent;
+      color: #ffffff;
+    }
+
+    .ctrl-next {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #ffffff;
+    }
+
+    .ctrl-arrow:hover {
+      transform: scale(1.08);
+    }
+
+    .metrics-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .stat-card {
+      border-radius: 18px;
+      padding: 28px 24px;
+      min-height: 280px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      border: 1px solid var(--card-border);
+      background: transparent;
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .pill-d {
+      display: inline-block;
+      width: 30px;
+      height: 16px;
+      border: 2.5px solid currentColor;
+      border-radius: 999px;
+      vertical-align: middle;
+      margin: 0 4px;
+      position: relative;
+      top: -2px;
+    }
+
+    .stat-value {
+      font-family: var(--font-heading);
+      font-size: 52px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+      color: #ffffff;
+    }
+
+    .stat-bottom {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .stat-title {
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+      color: #ffffff;
+    }
+
+    .stat-body {
+      font-size: 12.5px;
+      line-height: 1.5;
+      color: var(--text-muted);
+      text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+    }
+
+    /* Philosophy & Scope HUD Layout */
+    .philosophy-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 60px;
+      align-items: flex-start;
+      margin-bottom: 70px;
+    }
+
+    .philo-left {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .philo-headline {
+      font-family: var(--font-heading);
+      font-size: clamp(32px, 3.8vw, 48px);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.8);
+    }
+
+    .hud-widgets-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .hud-card {
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 16px;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      background: transparent;
+    }
+
+    .hud-label {
+      font-size: 11px;
+      color: var(--text-dim);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+    }
+
+    .hud-amount {
+      font-family: var(--font-heading);
+      font-size: 24px;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: -0.02em;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+    }
+
+    .hud-progress-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-top: 2px;
+    }
+
+    .hud-prog-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 10px;
+      color: var(--text-dim);
+      font-weight: 600;
+    }
+
+    .segmented-bar {
+      display: flex;
+      gap: 3px;
+      height: 8px;
+    }
+
+    .bar-seg {
+      flex: 1;
+      background: rgba(255, 255, 255, 0.18);
+      border-radius: 2px;
+    }
+
+    .bar-seg.active {
+      background: var(--accent);
+    }
+
+    .chart-visual {
+      display: flex;
+      align-items: flex-end;
+      gap: 4px;
+      height: 26px;
+      margin-top: 4px;
+    }
+
+    .chart-col {
+      flex: 1;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 2px 2px 0 0;
+      min-height: 4px;
+    }
+
+    .chart-col.accent {
+      background: var(--accent);
+    }
+
+    .philo-right {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .philo-tag-top {
+      text-align: right;
+      font-size: 12px;
+      color: var(--text-dim);
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      margin-bottom: -10px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+    }
+
+    .philo-paragraph {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+    }
+
+    .philo-cta {
+      margin-top: 10px;
+      align-self: flex-start;
+    }
+
+    /* [05] READY TO GROW & SCALE SECTION */
+    .contact-section {
+      padding: 90px 0 70px 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      position: relative;
+    }
+
+    .contact-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 48px;
+    }
+
+    .contact-header-block {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .contact-badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .contact-badge-pill .badge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 8px var(--accent-glow);
+    }
+
+    .contact-badge-pill .badge-desc {
+      color: var(--text-dim);
+      font-weight: 500;
+      letter-spacing: 0.02em;
+    }
+
+    .contact-giant-headline {
+      font-family: var(--font-heading);
+      font-size: clamp(36px, 7vw, 92px);
+      font-weight: 900;
+      line-height: 0.92;
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+      color: #ffffff;
+      text-shadow: 0 4px 30px rgba(0,0,0,0.8);
+    }
+
+    .contact-giant-headline .headline-grow {
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+    }
+
+    .contact-giant-headline .headline-sub {
+      font-size: clamp(24px, 4.4vw, 56px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: rgba(255, 255, 255, 0.85);
+      display: inline-block;
+      margin-left: 8px;
+    }
+
+    .contact-form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 36px 30px;
+      margin-top: 10px;
+    }
+
+    .form-field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .form-field-group.full-width {
+      grid-column: 1 / -1;
+    }
+
+    .field-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+
+    .direct-input {
+      width: 100%;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      color: #ffffff;
+      font-family: var(--font-body);
+      font-size: 16px;
+      padding: 12px 0;
+      outline: none;
+      transition: border-color 0.25s ease;
+      -webkit-appearance: none;
+      appearance: none;
+      border-radius: 0;
+    }
+
+    .direct-input::placeholder {
+      color: rgba(255, 255, 255, 0.35);
+      font-size: 14px;
+      letter-spacing: 0.05em;
+    }
+
+    .direct-input:focus {
+      border-bottom-color: var(--accent);
+    }
+
+    .form-actions-row {
+      grid-column: 1 / -1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+      padding-top: 20px;
+    }
+
+    .direct-email-sub {
+      font-size: 13px;
+      color: var(--text-dim);
+    }
+
+    .direct-email-sub a {
+      color: var(--text-muted);
+      text-decoration: underline;
+      transition: color 0.2s;
+    }
+
+    .direct-email-sub a:hover {
+      color: var(--accent);
+    }
+
+    /* Giant REXFORGE STUDIOS Banner */
+    .giant-banner-wrap {
+      width: 100%;
+      text-align: center;
+      overflow: hidden;
+      padding: 40px 0 20px 0;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    .giant-banner-text {
+      font-family: var(--font-heading);
+      font-size: clamp(36px, 8.8vw, 130px);
+      font-weight: 900;
+      line-height: 0.95;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.1) 90%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      opacity: 0.9;
+    }
+
+    /* Normal Clean Footer */
+    footer {
+      padding: 32px 0 28px 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      background: transparent;
+      position: relative;
+      z-index: 20;
+    }
+
+    .footer-normal-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    .footer-brand-side {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .footer-crest-normal {
+      width: 24px;
+      height: 28px;
+    }
+
+    .footer-brand-name {
+      font-family: var(--font-heading);
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #ffffff;
+    }
+
+    .footer-copy-text {
+      font-size: 12px;
+      color: var(--text-dim);
+      margin-left: 10px;
+      border-left: 1px solid rgba(255, 255, 255, 0.15);
+      padding-left: 14px;
+    }
+
+    .footer-nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .footer-nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    .footer-nav-links a:hover {
+      color: var(--accent);
+    }
+
+    .footer-social-side {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .footer-social-side a {
+      color: var(--text-dim);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+
+    .footer-social-side a:hover {
+      color: #ffffff;
+    }
+
+    .back-to-top-btn {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: color 0.2s;
+      cursor: pointer;
+    }
+
+    .back-to-top-btn:hover {
+      color: var(--accent);
+    }
+
+    /* Full Responsive System for Tablets and Mobile */
+    @media (max-width: 1024px) {
+      header {
+        padding: 14px 20px;
+      }
+      .hero-top-content {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+      .section-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+      .cards-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .hero-pillars {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
+      .statement-grid {
+        grid-template-columns: 1fr;
+      }
+      .statement-right-tag {
+        text-align: left;
+      }
+      .metrics-row {
+        grid-template-columns: 1fr;
+      }
+      .metrics-cards-grid {
+        grid-template-columns: 1fr;
+      }
+      .philosophy-grid {
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
+      .philo-tag-top {
+        text-align: left;
+      }
+      .contact-form-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+      .footer-normal-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 18px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      header {
+        padding: 12px 18px;
+      }
+      nav {
+        display: none;
+      }
+      .container {
+        padding: 0 18px;
+      }
+      .hero-section {
+        padding-top: 100px;
+        padding-bottom: 40px;
+        min-height: auto;
+      }
+      .hero-title {
+        font-size: clamp(38px, 10vw, 56px);
+      }
+      .hero-pillars {
+        grid-template-columns: repeat(2, 1fr);
+        margin-top: 40px;
+        padding-top: 20px;
+      }
+      .brands-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 18px;
+      }
+      .brands-list {
+        gap: 24px;
+      }
+      .details-section,
+      .campaigns-section,
+      .contact-section {
+        padding: 60px 0 40px 0;
+      }
+      .marker-bar {
+        margin-bottom: 40px;
+      }
+      .hud-widgets-row {
+        grid-template-columns: 1fr;
+      }
+      .contact-giant-headline .headline-sub {
+        margin-left: 0;
+        display: block;
+      }
+      .form-actions-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .form-actions-row .btn-pill {
+        justify-content: center;
+        width: 100%;
+      }
+      .giant-banner-text {
+        white-space: normal;
+        word-break: break-word;
+        line-height: 1.1;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-pillars {
+        grid-template-columns: 1fr;
+      }
+      .footer-copy-text {
+        border-left: none;
+        padding-left: 0;
+        margin-left: 0;
+      }
+      .footer-brand-side {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+      }
+      .footer-nav-links,
+      .footer-social-side {
+        flex-wrap: wrap;
+        gap: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Cinematic Assembling Emblem Loader -->
+  <div class="loader" id="loader">
+    <div class="assemble-container">
+      
+      <!-- Ambient Back Aura -->
+      <div class="assemble-aura"></div>
+      
+      <!-- Outer Tech Orbitals -->
+      <div class="assemble-orbit-ring"></div>
+      <div class="assemble-dashed-ring"></div>
+      
+      <!-- 4 Corner Converging Tech Brackets -->
+      <div class="corner-bracket br-tl"></div>
+      <div class="corner-bracket br-tr"></div>
+      <div class="corner-bracket br-bl"></div>
+      <div class="corner-bracket br-br"></div>
+      
+      <!-- Assembling Emblem Pieces SVG -->
+      <svg class="assemble-svg" viewBox="0 0 120 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Top Crown Left Wing -->
+        <path class="piece piece-tl" d="M30 48 L46 22 L60 38 L48 54 Z" fill="url(#emberGrad)" stroke="#FF5A1F" stroke-width="1.5" />
+        <!-- Top Crown Right Wing -->
+        <path class="piece piece-tr" d="M90 48 L74 22 L60 38 L72 54 Z" fill="url(#emberGrad)" stroke="#FF5A1F" stroke-width="1.5" />
+        <!-- Central Sword / Anchor Spine -->
+        <path class="piece piece-center" d="M60 14 L68 28 L64 96 L60 106 L56 96 L52 28 Z" fill="#ffffff" filter="drop-shadow(0 0 8px #FF5A1F)" />
+        <!-- Lower Shield Left Blade -->
+        <path class="piece piece-bl" d="M26 60 L48 64 L54 100 L38 90 Z" fill="url(#darkEmber)" stroke="#FF5A1F" stroke-width="1.5" />
+        <!-- Lower Shield Right Blade -->
+        <path class="piece piece-br" d="M94 60 L72 64 L66 100 L82 90 Z" fill="url(#darkEmber)" stroke="#FF5A1F" stroke-width="1.5" />
+        <!-- Core Nexus Crystal -->
+        <polygon class="piece piece-core" points="60,46 70,58 60,70 50,58" fill="#FF5A1F" stroke="#ffffff" stroke-width="1.5" />
+        
+        <defs>
+          <linearGradient id="emberGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#FF5A1F" />
+            <stop offset="100%" stop-color="#FF3B00" />
+          </linearGradient>
+          <linearGradient id="darkEmber" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#2a0f05" />
+            <stop offset="100%" stop-color="#FF5A1F" />
+          </linearGradient>
+        </defs>
+      </svg>
+
+      <!-- Laser Scan Line Effect -->
+      <div class="assemble-laser-scan"></div>
+    </div>
+
+    <!-- HUD Status Block -->
+    <div class="loader-hud-wrap">
+      <div class="loader-status-pill">
+        <span class="status-pulse-dot"></span>
+        <span class="status-text">INITIALIZING ENGINE</span>
+      </div>
+      <div class="loader-bar-bg">
+        <div class="loader-bar" id="loaderBar"></div>
+      </div>
+      <div class="loader-text" id="loaderText">Loading 0%</div>
+    </div>
+  </div>
+
+  <!-- Background Scroll Animation Canvas -->
+  <div class="canvas-container">
+    <canvas id="animationCanvas"></canvas>
+  </div>
+
+  <!-- Foreground Content Layer -->
+  <div class="content-wrapper">
+    
+    <!-- Top Header -->
+    <header id="header">
+      <a href="#" class="brand-logo-wrap">
+        <img src="rexforge-logo.svg" alt="RexForge Crest" class="brand-crest-icon">
+        <div class="logo-text-group">
+          <div class="logo-name">REXFORGE<span>.</span></div>
+          <div class="logo-tagline">Forged In Code</div>
+        </div>
+      </a>
+      <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#studio">RexForge</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a href="#contact" class="btn-pill btn-accent">
+        <span>Get in touch</span>
+        <div class="btn-pill-icon">➔</div>
+      </a>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section container" id="home">
+      <div class="hero-top-content">
+        <div class="hero-left">
+          <div class="hero-subtitle">Hey, I'm Geoffrey</div>
+          <h1 class="hero-title">
+            <span class="highlight">Creative</span>
+            <span>Director</span>
+          </h1>
+        </div>
+        <div class="hero-right">
+          <div class="hero-quote">Great design should feel invisible.</div>
+          <div class="hero-desc">
+            From gameplay systems to interactive code and brand language, I craft digital worlds and interfaces that connect and convert.
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-pillars">
+        <div class="pillar-item">
+          <span class="pillar-num">//01</span>
+          <span class="pillar-title">Creative Direction</span>
+        </div>
+        <div class="pillar-item">
+          <span class="pillar-num">//02</span>
+          <span class="pillar-title">RexForge Studios</span>
+        </div>
+        <div class="pillar-item">
+          <span class="pillar-num">//03</span>
+          <span class="pillar-title">Web & App Dev</span>
+        </div>
+        <div class="pillar-item">
+          <span class="pillar-num">//04</span>
+          <span class="pillar-title">Interactive Systems</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Brands & Partners Strip -->
+    <section class="brands-section">
+      <div class="container brands-container">
+        <div class="brands-label">Trusted by Studios & Teams I've Shaped</div>
+        <div class="brands-list">
+          <div class="brand-item">
+            <img src="rexforge-logo.svg" alt="RexForge" class="brand-crest-small">
+            RexForge Studios
+          </div>
+          <div class="brand-item"><span class="brand-icon">⭘</span> Supa Blox</div>
+          <div class="brand-item"><span class="brand-icon">⌛</span> Hype Blox</div>
+          <div class="brand-item"><span class="brand-icon">◐</span> Frame Blox</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- [02] BEHIND THE DESIGNS / PORTFOLIO -->
+    <section class="details-section container" id="projects">
+      <div class="section-header">
+        <span class="section-tag">// Craft & Architecture</span>
+        <div class="section-grid">
+          <h2 class="section-title">BEHIND THE DESIGNS</h2>
+          <div class="section-right">
+            <p class="section-desc">
+              Every detail is engineered with intention. From high-performance canvas engines to bespoke visual identity systems, I merge technical discipline with creative storytelling.
+            </p>
+            <div class="section-cta-wrap">
+              <div class="cta-subtext">Selected commercial & internal studio releases</div>
+              <a href="#studio" class="btn-pill">
+                <span>Explore Studio</span>
+                <div class="btn-pill-icon">↗</div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 Portfolio Showcase Cards -->
+      <div class="cards-grid">
+        
+        <!-- Card 1: RexForge Studio -->
+        <div class="work-card">
+          <div class="card-visual">
+            <div class="card-visual-inner">
+              <div class="mock-art-rexforge">
+                <img src="rexforge-logo.svg" alt="RexForge Crest" class="rexforge-card-logo">
+                <div class="rexforge-motto">REXFORGE STUDIOS</div>
+              </div>
+            </div>
+          </div>
+          <div class="card-info">
+            <span class="card-category">Game Direction & Interactive</span>
+            <h3 class="card-name">RexForge Engine</h3>
+            <p class="card-subtext">Custom frame-by-frame 3D canvas pipeline with hardware-accelerated physics LERP.</p>
+          </div>
+        </div>
+
+        <!-- Card 2: Pulse Spatial UI -->
+        <div class="work-card">
+          <div class="card-visual">
+            <div class="card-visual-inner">
+              <div class="mock-art-2">
+                <svg class="pulse-card-logo" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <!-- Outer Pulse Rings -->
+                  <circle cx="50" cy="50" r="42" stroke="rgba(255, 90, 31, 0.25)" stroke-width="1.5" stroke-dasharray="4 4" />
+                  <circle cx="50" cy="50" r="32" stroke="rgba(255, 90, 31, 0.45)" stroke-width="2" />
+                  <circle cx="50" cy="50" r="22" stroke="#FF5A1F" stroke-width="2" />
+                  
+                  <!-- Soundwave Equalizer Bars -->
+                  <rect x="36" y="42" width="3.5" height="16" rx="1.75" fill="#ffffff" />
+                  <rect x="43" y="32" width="3.5" height="36" rx="1.75" fill="#FF5A1F" />
+                  <rect x="50" y="24" width="3.5" height="52" rx="1.75" fill="#ffffff" />
+                  <rect x="57" y="35" width="3.5" height="30" rx="1.75" fill="#FF5A1F" />
+                  <rect x="64" y="44" width="3.5" height="12" rx="1.75" fill="#ffffff" />
+                  
+                  <!-- Corner Tech Anchors -->
+                  <path d="M22 28 L22 22 L28 22" stroke="#FF5A1F" stroke-width="2" stroke-linecap="round" />
+                  <path d="M78 28 L78 22 L72 22" stroke="#FF5A1F" stroke-width="2" stroke-linecap="round" />
+                  <path d="M22 72 L22 78 L28 78" stroke="#FF5A1F" stroke-width="2" stroke-linecap="round" />
+                  <path d="M78 72 L78 78 L72 78" stroke="#FF5A1F" stroke-width="2" stroke-linecap="round" />
+                </svg>
+                <div class="rexforge-motto">PULSE SPATIAL</div>
+              </div>
+            </div>
+          </div>
+          <div class="card-info">
+            <span class="card-category">Product Design & Code</span>
+            <h3 class="card-name">Pulse Spatial UI</h3>
+            <p class="card-subtext">Spatial audio platform and responsive WebGL design system for next-gen creators.</p>
+          </div>
+        </div>
+
+        <!-- Card 3: Creative Direction & Brand -->
+        <div class="work-card">
+          <div class="card-visual">
+            <div class="card-visual-inner">
+              <div class="mock-art-3">
+                <svg class="aura-card-logo" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <!-- Hexagonal Prismatic Crystal Shield -->
+                  <polygon points="50,15 82,33 82,67 50,85 18,67 18,33" stroke="rgba(255, 255, 255, 0.4)" stroke-width="1.5" />
+                  <polygon points="50,25 74,38 74,62 50,75 26,62 26,38" stroke="rgba(255, 90, 31, 0.6)" stroke-width="2" />
+                  
+                  <!-- Central Catalyst Core -->
+                  <polygon points="50,35 63,42 63,58 50,65 37,58 37,42" fill="rgba(255, 90, 31, 0.2)" stroke="#FF5A1F" stroke-width="2" />
+                  <circle cx="50" cy="50" r="4.5" fill="#ffffff" />
+                  
+                  <!-- Dynamic Orbital Vectors -->
+                  <line x1="50" y1="15" x2="50" y2="35" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" />
+                  <line x1="50" y1="65" x2="50" y2="85" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" />
+                  <line x1="18" y1="50" x2="37" y2="50" stroke="#FF5A1F" stroke-width="1.5" stroke-linecap="round" />
+                  <line x1="63" y1="50" x2="82" y2="50" stroke="#FF5A1F" stroke-width="1.5" stroke-linecap="round" />
+                </svg>
+                <div class="rexforge-motto" style="color: rgba(255, 255, 255, 0.85);">AURA LABS</div>
+              </div>
+            </div>
+          </div>
+          <div class="card-info">
+            <span class="card-category">Brand Strategy & Design</span>
+            <h3 class="card-name">Aura Labs</h3>
+            <p class="card-subtext">Comprehensive identity, packaging design, and full-stack interactive storefront.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- [04] DIGITAL CAMPAIGNS & REXFORGE STUDIOS METRICS -->
+    <section class="campaigns-section container" id="studio">
+      
+      <!-- Top Marker Bar -->
+      <div class="marker-bar">
+        <div class="marker-left">[04]</div>
+        <div class="marker-center">DIGITAL CAMPAIGNS</div>
+        <div class="marker-btn">↗</div>
+      </div>
+
+      <!-- Studio Statement -->
+      <div class="statement-grid">
+        <div class="studio-brand-box">
+          <img src="rexforge-logo.svg" alt="RexForge Logo" class="studio-crest-medium">
+          <div class="studio-brand-tag">
+            REXFORGE<br>STUDIOS
+          </div>
+        </div>
+        <div class="statement-center">
+          <h2 class="statement-title">
+            WE SHAPE BRANDS WITH CLARITY AN<span class="pill-d"></span> STRUCTURE INTO RECOGNITION THAT LASTS
+          </h2>
+          <p class="statement-desc">
+            REXFORGE STUDIOS is a marketing agency and creative studio building clear brand systems for modern market presence.
+          </p>
+        </div>
+        <div class="statement-right-tag">Creative studio</div>
+      </div>
+
+      <!-- Metrics / Stats Slider Row -->
+      <div class="metrics-row">
+        <div class="metrics-controls">
+          <div class="metrics-label">Market Presence</div>
+          <div class="metrics-arrows">
+            <div class="ctrl-arrow ctrl-prev">←</div>
+            <div class="ctrl-arrow ctrl-next">→</div>
+          </div>
+        </div>
+
+        <div class="metrics-cards-grid">
+          <!-- 100% Stat Card -->
+          <div class="stat-card">
+            <div class="stat-value">100%</div>
+            <div class="stat-bottom">
+              <div class="stat-title">Tailored Direction</div>
+              <div class="stat-body">Every solution is shaped around the brand, its market and the audience it needs to reach.</div>
+            </div>
+          </div>
+
+          <!-- 50+ Stat Card -->
+          <div class="stat-card">
+            <div class="stat-value">50+</div>
+            <div class="stat-bottom">
+              <div class="stat-title">Projects Delivered</div>
+              <div class="stat-body">Brand systems, visual identities and campaigns created for businesses that want clear growth.</div>
+            </div>
+          </div>
+
+          <!-- 97% Stat Card -->
+          <div class="stat-card">
+            <div class="stat-value">97%</div>
+            <div class="stat-bottom">
+              <div class="stat-title">Client Satisfaction</div>
+              <div class="stat-body">Strong results, clear communication and consistent delivery keep clients confident in the work.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Philosophy & Scope HUD Layout -->
+      <div class="philosophy-grid">
+        <!-- Left Column -->
+        <div class="philo-left">
+          <h3 class="philo-headline">
+            CLEAR<br>
+            BRAN<span class="pill-d"></span>S STAY<br>
+            IN MEMORY.
+          </h3>
+
+          <div class="hud-widgets-row">
+            <!-- HUD Widget 1: Identity Scope -->
+            <div class="hud-card">
+              <div class="hud-label">Identity Scope:</div>
+              <div class="hud-amount">$18,000</div>
+              <div class="hud-progress-wrap">
+                <div class="hud-prog-labels">
+                  <span>Progress</span>
+                  <span style="color: var(--accent);">70%</span>
+                </div>
+                <div class="segmented-bar">
+                  <div class="bar-seg active"></div>
+                  <div class="bar-seg active"></div>
+                  <div class="bar-seg active"></div>
+                  <div class="bar-seg active"></div>
+                  <div class="bar-seg active"></div>
+                  <div class="bar-seg active"></div>
+                  <div class="bar-seg active"></div>
+                  <div class="bar-seg"></div>
+                  <div class="bar-seg"></div>
+                  <div class="bar-seg"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- HUD Widget 2: Campaign Scope -->
+            <div class="hud-card">
+              <div class="hud-label">Campaign Scope:</div>
+              <div class="hud-amount">$11,500</div>
+              <div class="chart-visual">
+                <div class="chart-col" style="height: 35%;"></div>
+                <div class="chart-col accent" style="height: 70%;"></div>
+                <div class="chart-col accent" style="height: 90%;"></div>
+                <div class="chart-col accent" style="height: 60%;"></div>
+                <div class="chart-col" style="height: 40%;"></div>
+                <div class="chart-col accent" style="height: 85%;"></div>
+                <div class="chart-col accent" style="height: 100%;"></div>
+                <div class="chart-col" style="height: 55%;"></div>
+                <div class="chart-col" style="height: 30%;"></div>
+                <div class="chart-col accent" style="height: 75%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column -->
+        <div class="philo-right">
+          <div class="philo-tag-top">Philosophy</div>
+          <p class="philo-paragraph">
+            A brand becomes truly memorable when people can understand it quickly and recognize it without extra effort. Clarity creates the first strong connection.
+          </p>
+          <p class="philo-paragraph">
+            Consistency turns that connection into lasting trust. When the same visual logic appears across every brand touchpoint, the brand starts to feel familiar.
+          </p>
+          <p class="philo-paragraph">
+            Recognition is not a random effect. It is built through form, contrast, repetition and a clear system that keeps the brand present in people's minds.
+          </p>
+          <div class="philo-cta">
+            <a href="#contact" class="btn-pill">
+              <span>Start a Project</span>
+              <div class="btn-pill-icon btn-dark-icon">↗</div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- [05] READY TO GROW & SCALE SECTION (From Image) -->
+    <section class="contact-section container" id="contact">
+      <div class="contact-wrapper">
+        
+        <div class="contact-header-block">
+          <div class="contact-badge-pill">
+            <span class="badge-dot"></span>
+            <span>LET'S TALK</span>
+            <span class="badge-desc">— Leave a message or start an inquiry</span>
+          </div>
+
+          <h2 class="contact-giant-headline">
+            READY TO<br>
+            <span class="headline-grow">GROW</span>
+            <span class="headline-sub">& SCALE YOUR COMPANY?</span>
+          </h2>
+        </div>
+
+        <form class="contact-form-grid" onsubmit="event.preventDefault(); alert('Thank you! Your message has been sent.');">
+          
+          <div class="form-field-group">
+            <label class="field-label">Your Name*</label>
+            <input type="text" class="direct-input" placeholder="e.g. Johnathan Doe" required>
+          </div>
+
+          <div class="form-field-group">
+            <label class="field-label">Your Email*</label>
+            <input type="email" class="direct-input" placeholder="e.g. john@company.com" required>
+          </div>
+
+          <div class="form-field-group">
+            <label class="field-label">Your Budget Range*</label>
+            <input type="text" class="direct-input" placeholder="e.g. $10k - $50k+">
+          </div>
+
+          <div class="form-field-group">
+            <label class="field-label">Company / Brand Name</label>
+            <input type="text" class="direct-input" placeholder="e.g. Apex Interactive">
+          </div>
+
+          <div class="form-field-group full-width">
+            <label class="field-label">Project Details & Objectives*</label>
+            <textarea class="direct-input" rows="3" placeholder="Tell me about your product, timeline, and vision..." required></textarea>
+          </div>
+
+          <div class="form-actions-row">
+            <button type="submit" class="btn-pill btn-accent">
+              <span>Send Message</span>
+              <div class="btn-pill-icon">➔</div>
+            </button>
+            <div class="direct-email-sub">
+              Prefer direct email? <a href="mailto:contact@rexforgestudios.com">contact@rexforgestudios.com</a>
+            </div>
+          </div>
+
+        </form>
+
+      </div>
+    </section>
+
+    <!-- Giant REXFORGE STUDIOS Banner Typography -->
+    <div class="giant-banner-wrap">
+      <div class="giant-banner-text">REXFORGE STUDIOS</div>
+    </div>
+
+    <!-- Normal Clean Studio Footer -->
+    <footer>
+      <div class="container">
+        <div class="footer-normal-row">
+          
+          <div class="footer-brand-side">
+            <img src="rexforge-logo.svg" alt="RexForge Crest" class="footer-crest-normal">
+            <span class="footer-brand-name">RexForge Studios</span>
+            <span class="footer-copy-text">© 2026 Geoffrey — Founder & Creative Director.</span>
+          </div>
+
+          <div class="footer-nav-links">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#studio">Studio</a>
+            <a href="#contact">Contact</a>
+          </div>
+
+          <div class="footer-social-side">
+            <a href="mailto:contact@rexforgestudios.com">Email</a>
+            <a href="#">ArtStation</a>
+            <a href="#">X / Twitter</a>
+            <a href="#">GitHub</a>
+            <a href="#home" class="back-to-top-btn">Top ↑</a>
+          </div>
+
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <script>
+    // Always start at top of page on load / refresh
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+    window.scrollTo(0, 0);
+
+    const FRAME_COUNT = 240;
+    const canvas = document.getElementById('animationCanvas');
+    const ctx = canvas.getContext('2d', { alpha: false });
+    const loader = document.getElementById('loader');
+    const loaderBar = document.getElementById('loaderBar');
+    const loaderText = document.getElementById('loaderText');
+    const header = document.getElementById('header');
+
+    const frames = [];
+    let loadedCount = 0;
+
+    // Helper to format frame filename: ezgif-frame-001.jpg
+    function getFrameUrl(index) {
+      const paddedIndex = String(index).padStart(3, '0');
+      return `ezgif-frame-${paddedIndex}.jpg`;
+    }
+
+    // High DPI Canvas resize and crisp rendering with mobile viewport handling
+    function resizeCanvas() {
+      const dpr = window.devicePixelRatio || 1;
+      const w = window.innerWidth || document.documentElement.clientWidth;
+      const h = window.innerHeight || document.documentElement.clientHeight;
+      canvas.width = Math.round(w * dpr);
+      canvas.height = Math.round(h * dpr);
+      canvas.style.width = w + 'px';
+      canvas.style.height = h + 'px';
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      renderFrame(Math.round(currentFrame));
+    }
+
+    window.addEventListener('resize', resizeCanvas, { passive: true });
+    window.addEventListener('orientationchange', () => {
+      setTimeout(resizeCanvas, 100);
+    }, { passive: true });
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener('resize', resizeCanvas, { passive: true });
+    }
+
+    // Draw frame centered with fullscreen COVER mode (eliminates letterbox bars on mobile and desktop)
+    function renderFrame(index) {
+      const clampedIndex = Math.min(Math.max(1, index), FRAME_COUNT);
+      const img = frames[clampedIndex - 1];
+      if (!img || !img.complete || img.naturalWidth === 0) return;
+
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+
+      ctx.save();
+      ctx.clearRect(0, 0, w, h);
+      ctx.fillStyle = '#000000';
+      ctx.fillRect(0, 0, w, h);
+
+      // Object-fit COVER style: animation fills 100% of viewport on mobile & desktop seamlessly
+      const scale = Math.max(w / img.naturalWidth, h / img.naturalHeight);
+      const drawWidth = img.naturalWidth * scale;
+      const drawHeight = img.naturalHeight * scale;
+      const offsetX = (w - drawWidth) / 2;
+      const offsetY = (h - drawHeight) / 2;
+
+      ctx.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
+      ctx.restore();
+    }
+
+    // Smooth physics interpolation (LERP)
+    let targetFrame = 1;
+    let currentFrame = 1;
+    const LERP_FACTOR = 0.08; // Ultra smooth easing
+
+    function updateScrollProgress() {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = maxScroll > 0 ? Math.min(Math.max(scrollTop / maxScroll, 0), 1) : 0;
+      
+      // Calculate target frame smoothly along document scroll progress
+      targetFrame = 1 + progress * (FRAME_COUNT - 1);
+
+      // Header background toggle
+      if (scrollTop > 40) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    }
+
+    window.addEventListener('scroll', updateScrollProgress, { passive: true });
+
+    function tick() {
+      // Smoothly interpolate current frame toward target frame
+      const diff = targetFrame - currentFrame;
+      if (Math.abs(diff) > 0.001) {
+        currentFrame += diff * LERP_FACTOR;
+        renderFrame(Math.round(currentFrame));
+      }
+
+      requestAnimationFrame(tick);
+    }
+
+    // Preload all 240 frames
+    function preloadImages() {
+      for (let i = 1; i <= FRAME_COUNT; i++) {
+        const img = new Image();
+        img.src = getFrameUrl(i);
+        img.onload = () => {
+          loadedCount++;
+          const percent = Math.round((loadedCount / FRAME_COUNT) * 100);
+          loaderBar.style.width = percent + '%';
+          loaderText.textContent = `ASSETS STREAMED [ ${percent}% ]`;
+
+          // Initial paint as soon as first frame is ready
+          if (i === 1) {
+            resizeCanvas();
+          }
+
+          if (loadedCount === FRAME_COUNT) {
+            loaderText.textContent = `SYSTEM ONLINE [ 100% ]`;
+            setTimeout(() => {
+              loader.classList.add('hidden');
+              resizeCanvas();
+            }, 350);
+          }
+        };
+        img.onerror = () => {
+          loadedCount++;
+          if (loadedCount === FRAME_COUNT) {
+            loader.classList.add('hidden');
+            resizeCanvas();
+          }
+        };
+        frames.push(img);
+      }
+    }
+
+    // Initialize
+    preloadImages();
+    resizeCanvas();
+    requestAnimationFrame(tick);
+  </script>
+</body>
 </html>
